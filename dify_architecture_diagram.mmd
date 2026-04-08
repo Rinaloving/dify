@@ -1,0 +1,101 @@
+```mermaid
+graph TB
+    subgraph "Dify Platform Architecture"
+        direction TB
+        
+        subgraph "Frontend Layer"
+            FE[Web Interface<br/>Next.js/React]
+            UI[User Interface<br/>Workflows, Chat, etc.]
+        end
+        
+        subgraph "API Layer"
+            API[Backend API<br/>Flask/Python]
+            AUTH[Authentication Service]
+            VALIDATION[Input Validation]
+        end
+        
+        subgraph "Core Services"
+            WORKFLOW[Workflow Engine]
+            CHAT[Chat Service]
+            RAG[RAG Pipeline]
+            AGENT[Agent Orchestration]
+        end
+        
+        subgraph "Integration Layer"
+            MODEL_API[Model Provider APIs<br/>OpenAI, Anthropic, etc.]
+            LLM_PROVIDER[LLM Models]
+            EMBEDDING_PROVIDER[Embedding Models]
+        end
+        
+        subgraph "Data Layer"
+            VDB[Vector Database<br/>PgVector, Qdrant, etc.]
+            KV_STORE[KV Storage<br/>Redis]
+            DOCUMENT_STORAGE[Document Storage<br/>File System/S3]
+            STRUCTURED_DB[Structured DB<br/>PostgreSQL]
+        end
+        
+        subgraph "Infrastructure"
+            MESSAGE_QUEUE[Message Queue<br/>Celery + Redis]
+            TASK_SCHEDULER[Task Scheduler]
+            CACHE[Cache Layer<br/>Redis]
+        end
+    end
+    
+    %% Frontend to API connections
+    FE --> API
+    UI --> API
+    
+    %% API to Core Services
+    API --> WORKFLOW
+    API --> CHAT
+    API --> RAG
+    API --> AGENT
+    
+    %% Core Services connections
+    WORKFLOW --> AGENT
+    CHAT --> RAG
+    AGENT --> RAG
+    
+    %% Core Services to Data Layer
+    WORKFLOW --> STRUCTURED_DB
+    CHAT --> STRUCTURED_DB
+    RAG --> VDB
+    RAG --> DOCUMENT_STORAGE
+    AGENT --> STRUCTURED_DB
+    
+    %% Data Layer connections
+    VDB --> EMBEDDING_PROVIDER
+    DOCUMENT_STORAGE --> EMBEDDING_PROVIDER
+    STRUCTURED_DB --> KV_STORE
+    
+    %% Integration Layer connections
+    WORKFLOW --> MODEL_API
+    CHAT --> MODEL_API
+    AGENT --> MODEL_API
+    RAG --> MODEL_API
+    
+    MODEL_API --> LLM_PROVIDER
+    MODEL_API --> EMBEDDING_PROVIDER
+    
+    %% Infrastructure connections
+    MESSAGE_QUEUE --> TASK_SCHEDULER
+    WORKFLOW --> MESSAGE_QUEUE
+    RAG --> MESSAGE_QUEUE
+    AGENT --> MESSAGE_QUEUE
+    CACHE --> API
+    
+    %% Styling
+    classDef frontend fill:#e1f5fe
+    classDef api fill:#f3e5f5
+    classDef core fill:#e8f5e8
+    classDef integration fill:#fff3e0
+    classDef data fill:#fce4ec
+    classDef infra fill:#f1f8e9
+    
+    class FE,UI frontend
+    class API,AUTH,VALIDIDATION api
+    class WORKFLOW,CHAT,RAG,AGENT core
+    class MODEL_API,LLM_PROVIDER,EMBEDDING_PROVIDER integration
+    class VDB,KV_STORE,DOCUMENT_STORAGE,STRUCTURED_DB data
+    class MESSAGE_QUEUE,TASK_SCHEDULER,CACHE infra
+```

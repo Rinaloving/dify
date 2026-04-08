@@ -1,0 +1,3 @@
+# User Memories
+
+- 项目周任务管理 (XrProjectWeekTask) 相关文件： 1. api-1772175404085-23wgqu.ts - API 接口定义文件，包含 XrProjectWeekTask 的 CRUD 操作（getList, getInfo, create, update, del, batchDelete, getDetail），API 前缀为 '/api/rb/XrProjectWeekTask' 2. columnList-1772175404108-ea49no.ts - 列表列配置，包含 14 个字段：项目 id(下拉选择，必填)、指派员工 (用户选择，必填)、任务内容 (文本域，必填)、开始日期 (日期选择，必填)、结束日期 (日期选择，必填)、任务状态 (单选：已完成/进行中，必填)、…

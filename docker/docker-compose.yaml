@@ -873,6 +873,8 @@ services:
     profiles:
       - postgresql
     restart: always
+    ports:
+      - "5432:5432"
     environment:
       POSTGRES_USER: ${DB_USERNAME:-postgres}
       POSTGRES_PASSWORD: ${DB_PASSWORD:-difyai123456}
@@ -1136,8 +1138,8 @@ services:
       - api
       - web
     ports:
-      - "${EXPOSE_NGINX_PORT:-80}:${NGINX_PORT:-80}"
-      - "${EXPOSE_NGINX_SSL_PORT:-443}:${NGINX_SSL_PORT:-443}"
+      - "${EXPOSE_NGINX_PORT:-8081}:${NGINX_PORT:-80}"
+      - "${EXPOSE_NGINX_SSL_PORT:-8443}:${NGINX_SSL_PORT:-443}"
 
   # The Weaviate vector store.
   weaviate:
@@ -1145,6 +1147,9 @@ services:
     profiles:
       - weaviate
     restart: always
+    ports:
+    - "8080:8080"  # 添加 HTTP 端口
+    - "50051:50051"  # 添加 gRPC 端口（可选）
     volumes:
       # Mount the Weaviate data directory to the con tainer.
       - ./volumes/weaviate:/var/lib/weaviate
