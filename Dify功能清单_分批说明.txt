@@ -1,0 +1,32 @@
+文件说明
+
+这批文件用于手动合并成总版 Excel。
+由于当前环境无法稳定解压并解析参考 xlsx 模板的真实列结构，所以先按统一字段输出为多份 CSV。
+所有内容均基于当前代码与已生成文档整理，不额外虚构功能。
+
+统一列头
+
+序号,一级模块,二级模块,页面/对象,功能点,功能说明,接口,Method,权限,主要入参/配置,主要出参/结果,主要落表/对象,备注
+
+分批文件
+
+1. Dify功能清单_01_App与站点.csv
+2. Dify功能清单_02_会话与消息.csv
+3. Dify功能清单_03_Workflow.csv
+4. Dify功能清单_04_Dataset.csv
+5. Dify功能清单_05_Provider与Plugin.csv
+6. Dify功能清单_06_JSON配置补充.csv
+
+建议合并方式
+
+1. 先把 6 份 CSV 分别导入 Excel。
+2. 统一列宽和筛选。
+3. 如需贴近 Higo 模板，可将这些行粘贴到模板主清单 Sheet 中。
+4. 若模板存在额外列，无法可靠确认的单元格建议留空。
+
+来源文档
+
+1. Dify_Backend_Page_Action_V1.md
+2. Dify_Backend_Interface_List_V1.md
+3. Dify_Backend_JSON_Structure_V1.md
+4. Dify_Backend_Function_DB_Mapping_V1.md
