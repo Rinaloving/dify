@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Agent 技术演进时间线</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 10px;
+            position: relative;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            position: relative;
+        }
+
+        .timeline {
+            padding: 40px 30px;
+        }
+
+        .timeline-item {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timeline-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+        }
+
+        .timeline-item h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #2c3e50;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .timeline-item h3::before {
+            content: '•';
+            color: #667eea;
+            font-size: 2rem;
+            margin-right: 10px;
+        }
+
+        .timeline-item .year {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            background: #ecf0f1;
+            padding: 4px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .timeline-item .description {
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .timeline-item .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .feature-card h4 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .timeline {
+                padding: 20px 20px;
+            }
+            
+            .timeline-item {
+                padding: 20px;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            border-top: 1px solid #ecf0f1;
+            background: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>AI Agent 技术演进时间线</h1>
+            <p>从提示工程到框架工程的发展历程</p>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <h3>Prompt Engineering（提示工程）</h3>
+                <div class="year">2020年左右</div>
+                <div class="description">
+                    随着<span class="highlight">GPT-3</span>等大型语言模型的出现而兴起，通过精心设计的输入提示来引导AI模型产生期望输出。主要依赖于对模型输入的巧妙构造，不需要修改模型本身。
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <h3>Workflow（工作流）</h3>
+                <div class="year">2022-2023年</div>
+                <div class="description">
+                    在Prompt Engineering基础上，为了实现更复杂的<span class="highlight">多步骤任务自动化</span>而发展起来。将多个AI调用、决策节点和外部工具按照逻辑顺序连接成流程，使AI能够执行需要多个步骤和条件判断的复杂任务。
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <h3>Skills（技能系统）</h3>
+                <div class="year">2023年</div>
+                <div class="description">
+                    让AI代理具备更多<span class="highlight">实用功能</span>的模块化能力扩展机制。预定义的功能模块，让AI可以调用特定工具或服务来完成任务，提高了AI的实用性，使其能执行文件操作、网络请求、数据库查询等操作。
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <h3>Context Engineering（上下文工程）</h3>
+                <div class="year">2023-2024年</div>
+                <div class="description">
+                    随着AI代理需要处理更长、更复杂的交互过程而发展起来，关注<span class="highlight">管理和优化AI模型的上下文信息</span>，以保持长期对话和任务状态。在长时间运行的代理中尤为重要。
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <h3>Harness Engineering（框架工程）</h3>
+                <div class="year">2024年至今</div>
+                <div class="description">
+                    设计和构建AI代理的<span class="highlight">底层架构和运行环境</span>，包括资源管理、安全控制、多代理协调、持久化存储等系统性考虑。代表了AI代理技术从应用层向系统层的发展。
+                </div>
+            </div>
+
+            <div class="features">
+                <div class="feature-card">
+                    <h4>技术演进</h4>
+                    <p>从简单提示到系统工程的完整发展轨迹</p>
+                </div>
+                <div class="feature-card">
+                    <h4>实用导向</h4>
+                    <p>每一步发展都围绕实际应用需求展开</p>
+                </div>
+                <div class="feature-card">
+                    <h4>持续进化</h4>
+                    <p>技术边界不断拓展，功能日趋完善</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>AI Agent 技术演进展示 | 从提示工程到框架工程</p>
+        </div>
+    </div>
+</body>
+</html>
